@@ -1,4 +1,4 @@
-require "rails_helper"
+require "spec_helper"
 
 RSpec.describe MojComponent::SubNavigationComponent, type: :component do
   context "when sub navigation component is called" do

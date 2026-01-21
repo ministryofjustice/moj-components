@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Moj::Component do
+RSpec.describe MojComponent do
   it "has a version number" do
-    expect(Moj::Component::VERSION).not_to be_nil
+    expect(MojComponent::VERSION).not_to be_nil
   end
 end

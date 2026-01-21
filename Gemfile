@@ -8,8 +8,9 @@ gemspec
 gem "irb"
 gem "rake", "~> 13.0"
 
-gem "rspec", "~> 3.0"
+gem "rspec"
 
 group :development, :test do
+  gem "capybara"
   gem "rubocop-govuk", require: false
 end

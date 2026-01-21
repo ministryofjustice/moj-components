@@ -1,4 +1,4 @@
-require "rails_helper"
+require "spec_helper"
 
 RSpec.describe MojComponent::HeaderComponent, type: :component do
   let(:content) do
@@ -14,16 +14,15 @@ RSpec.describe MojComponent::HeaderComponent, type: :component do
 
   context "when header is called with everything" do
     it "renders the organisation link and navigation items" do
-      expect(content)
-        .to have_link("Organisation name",
-                      href: "heading_url",
-                      class: "govuk-link moj-header__link moj-header__link--organisation-name")
-        .and have_link("Nav item 1",
-                       href: "nav1-url",
-                       class: "moj-header__navigation-link")
-        .and have_link("Nav item 2",
-                       href: "nav2-url",
-                       class: "moj-header__navigation-link")
+      expect(content).to have_link("Organisation name",
+                                   href: "heading_url",
+                                   class: "govuk-link moj-header__link moj-header__link--organisation-name")
+      expect(content).to have_link("Nav item 1",
+                                   href: "nav1-url",
+                                   class: "moj-header__navigation-link")
+      expect(content).to have_link("Nav item 2",
+                                   href: "nav2-url",
+                                   class: "moj-header__navigation-link")
     end
   end
 

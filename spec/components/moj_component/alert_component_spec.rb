@@ -1,4 +1,4 @@
-require "rails_helper"
+require "spec_helper"
 
 RSpec.describe MojComponent::AlertComponent, type: :component do
   let(:content) do
@@ -16,10 +16,9 @@ RSpec.describe MojComponent::AlertComponent, type: :component do
 
   context "when alert is called with everything" do
     it "renders the alert with heading, body and dismiss url" do
-      expect(content)
-        .to have_css(".moj-alert h2.moj-alert__heading", text: "Heading text")
-        .and have_css(".moj-alert .moj-alert__content", text: "Body text")
-        .and have_link("Remove", href: "made-up-url", class: "moj-alert__dismiss")
+      expect(content).to have_css(".moj-alert h2.moj-alert__heading", text: "Heading text")
+      expect(content).to have_css(".moj-alert .moj-alert__content", text: "Body text")
+      expect(content).to have_link("Remove", href: "made-up-url", class: "moj-alert__dismiss")
     end
   end
 
