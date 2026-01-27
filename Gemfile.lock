@@ -290,11 +290,9 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
-  irb
   moj-components!
   rails (>= 6.0)
-  rake (~> 13.0)
-  rspec (~> 3.0, >= 0)
+  rspec
   rubocop-govuk
 
 BUNDLED WITH

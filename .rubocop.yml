@@ -1,0 +1,15 @@
+---
+inherit_gem:
+  rubocop-govuk:
+    - config/default.yml
+    - config/rails.yml
+    - config/rspec.yml
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.4
+
+plugins:
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-rake
