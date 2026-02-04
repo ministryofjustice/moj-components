@@ -1,0 +1,11 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  rubocop:
+    uses: ministryofjustice/laa-reusable-github-actions/.github/workflows/rubocop.yml@main
