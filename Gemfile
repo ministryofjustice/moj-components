@@ -7,7 +7,6 @@ gemspec
 
 group :development, :test do
   gem "capybara"
-  gem "rails", ">= 6.0"
-  gem "rspec"
+  gem "rails"
   gem "rubocop-govuk", require: false
 end
