@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  rubocop:
+    uses: ministryofjustice/laa-reusable-github-actions/.github/workflows/rubocop.yml@main
+
+  rspec:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["3.2", "3.3", "3.4", "4.0"]
+        rails: ["7.2", "8.0", "8.1"]
+    runs-on: ubuntu-latest
+    name: Testing with Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Install gems
+        env:
+          RAILS_VERSION: ${{ matrix.rails }}
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run RSpec
+        run: bundle exec rspec
+
+      - run: bundle exec rake

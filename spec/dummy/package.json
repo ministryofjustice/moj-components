@@ -1,0 +1,9 @@
+{
+  "name": "moj-components-dummy",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ministryofjustice/frontend": "^5.1.5",
+    "govuk-frontend": "^5.11.2",
+    "moment": "^2.30.1"
+  }
+}
