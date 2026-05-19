@@ -111,6 +111,8 @@ GEM
       html-attributes-utils (~> 1.0.0, >= 1.0.0)
       pagy (>= 6, < 10)
       view_component (>= 4.9, < 4.10)
+    herb (0.10.1-arm64-darwin)
+    herb (0.10.1-x86_64-linux-gnu)
     html-attributes-utils (1.0.2)
       activesupport (>= 6.1.4.4)
     i18n (1.14.7)
@@ -299,6 +301,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  herb
   moj-components!
   rails
   rspec-rails
