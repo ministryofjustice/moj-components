@@ -36,7 +36,6 @@ module Dummy
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-
     gem_root = Rails.root.join("..", "..")
 
     config.autoload_paths << gem_root.join("app", "components")
