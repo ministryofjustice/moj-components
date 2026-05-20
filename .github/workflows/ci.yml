@@ -56,3 +56,37 @@ jobs:
 
       - name: Run Herb Linter
         run: npm run herb:lint
+
+  dummy_app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spec/dummy
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/spec/dummy/Gemfile
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: spec/dummy/package-lock.json
+
+      - name: Install dummy npm packages
+        run: npm ci
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Run dummy app CI
+        run: bin/ci
+
+      - name: Verify dummy assets build
+        env:
+          SECRET_KEY_BASE_DUMMY: 1
+        run: bin/rails assets:precompile
