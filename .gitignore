@@ -30,6 +30,7 @@
 !/tmp/storage/.keep
 
 /public/assets
+/node_modules/
 
 # Dummy files
 spec/dummy/log/

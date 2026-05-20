@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
@@ -19,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Testing with Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -38,3 +41,18 @@ jobs:
         run: bundle exec rspec
 
       - run: bundle exec rake
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run Herb Linter
+        run: npm run herb:lint
