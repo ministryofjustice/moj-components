@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@ministryofjustice/frontend": "^5.1.5",
-    "govuk-frontend": "^5.11.2",
+    "govuk-frontend": "^6.1.0",
     "moment": "^2.30.1"
   }
 }
