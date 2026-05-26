@@ -2,29 +2,33 @@ version: 2
 
 updates:
   - package-ecosystem: bundler
-    directory: /
+    directories:
+      - /
+      - /spec/dummy
     schedule:
       interval: weekly
     labels:
       - dependencies
-
-  - package-ecosystem: bundler
-    directory: /spec/dummy
-    schedule:
-      interval: weekly
-    labels:
-      - dependencies
-
-  - package-ecosystem: npm
-    directory: /
-    schedule:
-      interval: weekly
-    labels:
-      - dependencies
+    groups:
+      shared-ruby:
+        patterns:
+          - "*"
+        group-by: dependency-name
 
   - package-ecosystem: npm
-    directory: /spec/dummy
+    directories:
+      - /
+      - /spec/dummy
     schedule:
       interval: weekly
     labels:
       - dependencies
+    groups:
+      frontend-stack:
+        patterns:
+          - "@ministryofjustice/frontend"
+          - "govuk-frontend"
+      shared-npm:
+        patterns:
+          - "*"
+        group-by: dependency-name
