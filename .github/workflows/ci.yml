@@ -88,27 +88,3 @@ jobs:
         env:
           SECRET_KEY_BASE_DUMMY: 1
         run: bin/rails assets:precompile
-
-  ecr:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      # Assume role in Cloud Platform
-      - uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
-          aws-region: ${{ vars.ECR_REGION }}
-
-      # Login to container repository
-      - uses: aws-actions/amazon-ecr-login@v1
-        id: login-ecr
-
-      # Build and push a Docker image to the container repository
-      - run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-        env:
-          REGISTRY: ${{ secrets.ECR_REGISTRY_URL }}
-          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ github.sha }}
