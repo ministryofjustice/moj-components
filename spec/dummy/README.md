@@ -28,7 +28,7 @@ The Docker image precompiles assets during build. It also installs the npm depen
 
 Build (from repo root):
 
-- `docker build -t moj-components-lookbook -f spec/dummy/Dockerfile spec/dummy`
+- `docker build -f spec/dummy/Dockerfile -t moj-components-lookbook .`
 
 Run:
 
