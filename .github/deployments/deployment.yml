@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moj-components-docs-deployment
+  labels:
+    app: moj-components-docs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: moj-components-docs # this should match the selector in service.yml
+  template:
+    metadata:
+      labels:
+        app: moj-components-docs # this should match the selector in service.yml
+    spec:
+      containers:
+        - name: moj-components-docs
+          image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+          ports:
+            - containerPort: 80
