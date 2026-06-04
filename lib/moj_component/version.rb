@@ -2,4 +2,5 @@
 
 module MojComponent
   VERSION = "0.1.0"
+  Version = VERSION
 end
