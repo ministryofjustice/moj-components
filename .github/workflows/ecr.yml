@@ -35,9 +35,10 @@ jobs:
           REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
       - run: |
-          cat deployments/deployment.yml | envsubst > deployments/deployment.yml
-          cat deployments/ingress.yml | envsubst > deployments/ingress.yml
-          cat deployments/service.yml | envsubst > deployments/service.yml
+          mkdir -p deployments
+          cat .github/deployments/deployment.yml | envsubst > deployments/deployment.yml
+          cat .github/deployments/ingress.yml | envsubst > deployments/ingress.yml
+          cat .github/deployments/service.yml | envsubst > deployments/service.yml
         env:
           IMAGE_TAG: ${{ github.sha }}
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
