@@ -1,4 +1,4 @@
-# MojComponents
+# MoJ Components
 
 This gem provides reusable components for the [MoJ Design System](https://design-patterns.service.justice.gov.uk/). It is built using the [ViewComponent](https://github.com/ViewComponent/view_component) framework.
 
@@ -18,9 +18,29 @@ If bundler is not being used to manage dependencies, install the gem by executin
 gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 ```
 
+Install frontend packages that are used by moj-components:
+
+```
+npm install govuk-frontend @ministryofjustice/frontend
+```
+
+The gem will automatically add the frontend asset paths from node_modules to Rails.
+
 ## Usage
 
-TODO: Write usage instructions here
+You can render components directly in templates using helper methods provided by the gem. E.g.:
+
+```
+<%= moj_alert(
+      type: :information,
+      heading: "Important",
+      body: "Your application has been saved.",
+      dismiss_href: "#",
+      dismiss_text: "Dismiss"
+    ) %>
+```
+
+More information about each of the components is available here: X
 
 ## Development
 

@@ -45,11 +45,6 @@ module Dummy
     #
     # Both packages reference fonts/images using absolute URLs like `/assets/fonts/...` and
     # `/assets/images/...`, so we add their `.../assets` directories as separate asset roots.
-    node_modules = Rails.root.join("node_modules")
-    config.assets.paths << node_modules.join("govuk-frontend", "dist", "govuk")
-    config.assets.paths << node_modules.join("govuk-frontend", "dist", "govuk", "assets")
-    config.assets.paths << node_modules.join("@ministryofjustice", "frontend", "moj")
-    config.assets.paths << node_modules.join("@ministryofjustice", "frontend", "moj", "assets")
 
     # Don't generate system test files.
     config.generators.system_tests = nil

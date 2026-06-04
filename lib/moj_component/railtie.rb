@@ -16,6 +16,23 @@ module MojComponent
       end
     end
 
+    initializer "moj_component.assets" do |app|
+      next unless app.config.respond_to?(:assets)
+
+      node_modules = Rails.root.join("node_modules")
+
+      asset_paths = [
+        node_modules.join("govuk-frontend", "dist", "govuk"),
+        node_modules.join("govuk-frontend", "dist", "govuk", "assets"),
+        node_modules.join("@ministryofjustice", "frontend", "moj"),
+        node_modules.join("@ministryofjustice", "frontend", "moj", "assets"),
+      ]
+
+      asset_paths.each do |path|
+        app.config.assets.paths << path if path.directory?
+      end
+    end
+
     # Make helpers available in views (require file to avoid timing issues)
     initializer "moj_component.view_helpers" do
       helpers_file = GEM_ROOT.join("app/helpers/moj_component/helpers.rb")
