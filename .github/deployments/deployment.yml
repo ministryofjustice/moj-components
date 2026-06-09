@@ -17,5 +17,11 @@ spec:
       containers:
         - name: moj-components-docs
           image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+          env:
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: moj-components-uat-secrets
+                  key: secretKeyBase
           ports:
             - containerPort: 80
