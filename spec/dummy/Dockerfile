@@ -55,6 +55,8 @@ RUN bundle install && \
 # Copy application code
 COPY spec/dummy/ .
 COPY app ./app
+COPY previews ./previews
+COPY lib ./lib
 
 # Precompile bootsnap code for faster boot times.
 # -j 1 disable parallel compilation to avoid a QEMU bug: https://github.com/rails/bootsnap/issues/495

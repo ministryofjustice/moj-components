@@ -5,3 +5,10 @@ Rails.application.config.assets.version = "1.0"
 
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
+
+Rails.application.config.assets.paths += [
+  Rails.root.join("node_modules", "govuk-frontend", "dist", "govuk"),
+  Rails.root.join("node_modules", "govuk-frontend", "dist", "govuk", "assets"),
+  Rails.root.join("node_modules", "@ministryofjustice", "frontend", "moj"),
+  Rails.root.join("node_modules", "@ministryofjustice", "frontend", "moj", "assets"),
+]
