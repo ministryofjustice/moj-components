@@ -8,7 +8,10 @@
 #   config.lookbook.project_name = "moj-components"
 # end
 
-previews_path = Rails.root.join("..", "..", "previews").to_s
+container_previews_path = Rails.root.join("previews").to_s
+repo_previews_path = Rails.root.join("..", "..", "previews").to_s
+
+previews_path = File.exist?(container_previews_path) ? container_previews_path : repo_previews_path
 
 Rails.application.config.lookbook.preview_paths = [previews_path]
 Rails.application.config.view_component.previews.paths = [previews_path]
@@ -19,8 +22,8 @@ Rails.application.config.lookbook.ui_theme_overrides = {
   header_bg: "#0b0c0c",
 }
 
-Rails.application.reloader.to_prepare do
+if Rails.env.production?
   Dir.glob(File.join(previews_path, "**/*_preview.rb")).each do |file|
-    require_dependency file
+    require file
   end
 end

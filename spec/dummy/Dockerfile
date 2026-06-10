@@ -36,7 +36,7 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install npm dependencies (GOV.UK Frontend / MoJ Frontend assets live in node_modules)
-COPY package.json package-lock.json ./
+COPY spec/dummy/package.json spec/dummy/package-lock.json ./
 
 RUN npm ci && \
     npm cache clean --force
@@ -55,6 +55,8 @@ RUN bundle install && \
 # Copy application code
 COPY spec/dummy/ .
 COPY app ./app
+COPY previews ./previews
+COPY lib ./lib
 
 # Precompile bootsnap code for faster boot times.
 # -j 1 disable parallel compilation to avoid a QEMU bug: https://github.com/rails/bootsnap/issues/495
