@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moj-components (0.1.0)
+    moj_components (0.1.0)
       govuk-components
       view_component (>= 4.0)
 
@@ -302,7 +302,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   herb
-  moj-components!
+  moj_components!
   rails
   rspec-rails
   rubocop-govuk

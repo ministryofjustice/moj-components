@@ -3,7 +3,7 @@
 require_relative "lib/moj_component/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "moj-components"
+  spec.name = "moj_components"
   spec.version = MojComponent::VERSION
   spec.authors = ["Ministry of Justice"]
   spec.email = ["apply-for-legal-aid@justice.gov.uk"]
