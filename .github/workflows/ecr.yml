@@ -3,7 +3,11 @@ name: ECR Build and Push
 permissions: {}
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
     branches:
       - main
 
