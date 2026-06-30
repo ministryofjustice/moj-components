@@ -1,4 +1,3 @@
-# gems/moj-components/lib/moj_component/railtie.rb
 # frozen_string_literal: true
 
 require "rails/railtie"
@@ -16,15 +15,11 @@ module MojComponent
       end
     end
 
-    initializer "moj_component.assets" do |app|
-      next unless app.config.respond_to?(:assets)
-
+    initializer "moj_component.assets", before: "propshaft.assets_middleware" do |app|
       node_modules = Rails.root.join("node_modules")
 
       asset_paths = [
-        node_modules.join("govuk-frontend", "dist", "govuk"),
         node_modules.join("govuk-frontend", "dist", "govuk", "assets"),
-        node_modules.join("@ministryofjustice", "frontend", "moj"),
         node_modules.join("@ministryofjustice", "frontend", "moj", "assets"),
       ]
 

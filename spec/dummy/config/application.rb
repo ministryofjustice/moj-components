@@ -18,7 +18,7 @@ require "action_view/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require "moj_component"
+require "moj_components"
 
 module Dummy
   class Application < Rails::Application
