@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    moj-components (0.1.0)
+    moj_components (0.1.0)
       govuk-components
       view_component (>= 4.0)
 
@@ -375,7 +375,7 @@ DEPENDENCIES
   importmap-rails
   kamal
   lookbook
-  moj-components!
+  moj_components!
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.2)

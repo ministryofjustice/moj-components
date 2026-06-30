@@ -1,4 +1,4 @@
-# gems/moj-components/lib/moj/component/railtie.rb
+# gems/moj-components/lib/moj_component/railtie.rb
 # frozen_string_literal: true
 
 require "rails/railtie"

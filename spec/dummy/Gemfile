@@ -4,7 +4,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.2"
 
 gem "lookbook"
-gem "moj-components", path: "../.."
+gem "moj_components", path: "../.."
 
 # Ensure GOV.UK helper modules are loaded in the dummy app
 gem "govuk-components"
