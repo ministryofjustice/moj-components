@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in moj-components.gemspec
+# Specify your gem's dependencies in moj_components.gemspec
 gemspec
 
 group :development, :test do

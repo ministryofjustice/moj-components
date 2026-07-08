@@ -43,7 +43,7 @@ RUN npm ci && \
 
 # Install application gems
 COPY spec/dummy/Gemfile spec/dummy/Gemfile.lock ./
-COPY moj-components.gemspec ./
+COPY moj_components.gemspec ./
 COPY lib/moj_component/version.rb lib/moj_component/version.rb
 
 
