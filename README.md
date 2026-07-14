@@ -44,6 +44,15 @@ More information about each of the components is available here: X
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
+### Ruby versions in this repo
+
+- Local gem development uses the version in .ruby-version (currently 3.3.11).
+- The minimum supported Ruby version for consumers is defined in moj_components.gemspec.
+- The dummy Lookbook app deploy/runtime is defined separately in spec/dummy/dockerfile (currently Ruby 4.0.3).
+- CI checks both paths:
+  - compatibility across supported Ruby versions for the gem
+  - production-style runtime smoke checks for the dummy app/Lookbook
+
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
