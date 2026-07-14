@@ -88,3 +88,54 @@ jobs:
         env:
           SECRET_KEY_BASE_DUMMY: 1
         run: bin/rails assets:precompile
+
+  container_smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Build production image
+        run: |
+          docker build -f spec/dummy/Dockerfile -t moj-components-lookbook:${{ github.sha }} .
+
+      - name: Run container
+        run: |
+          docker run -d --name lookbook-smoke -p 8081:80 \
+            -e RAILS_SERVE_STATIC_FILES=1 \
+            -e SECRET_KEY_BASE=dummy_ci_secret \
+            moj-components-lookbook:${{ github.sha }}
+
+      - name: Wait for app and smoke test
+        run: |
+          set -euo pipefail
+
+          for i in $(seq 1 90); do
+            if [ "$(docker inspect -f '{{.State.Running}}' lookbook-smoke)" != "true" ]; then
+              echo "Container exited early"
+              docker logs lookbook-smoke
+              exit 1
+            fi
+
+            if curl -fsS http://127.0.0.1:8081/up > /dev/null; then
+              break
+            fi
+
+            if [ "$i" -eq 90 ]; then
+              echo "Container did not become healthy"
+              docker logs lookbook-smoke
+              exit 1
+            fi
+
+            sleep 2
+          done
+
+          curl -fLsS http://127.0.0.1:8081/lookbook > /dev/null || { docker logs lookbook-smoke; exit 1; }
+
+      - name: Dump logs on failure
+        if: failure()
+        run: docker logs lookbook-smoke || true
+
+      - name: Cleanup container
+        if: always()
+        run: docker rm -f lookbook-smoke || true
