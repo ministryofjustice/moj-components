@@ -48,7 +48,7 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 - Local gem development uses the version in .ruby-version (currently 3.3.11).
 - The minimum supported Ruby version for consumers is defined in moj_components.gemspec.
-- The dummy Lookbook app deploy/runtime is defined separately in spec/dummy/dockerfile (currently Ruby 4.0.3).
+- The dummy Lookbook app deploy/runtime is defined separately in spec/dummy/dockerfile (currently Ruby 4.0.6).
 - CI checks both paths:
   - compatibility across supported Ruby versions for the gem
   - production-style runtime smoke checks for the dummy app/Lookbook
