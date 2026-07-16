@@ -38,7 +38,7 @@ You can render components directly in templates using helper methods provided by
     ) %>
 ```
 
-More information about each of the components is available here: X
+More [information about each of the components is available here.](https://moj-components-uat.apps.live.cloud-platform.service.justice.gov.uk/)
 
 ## Development
 
