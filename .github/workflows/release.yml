@@ -39,8 +39,8 @@ jobs:
 
       - name: Update lockfile
         run: |
-          bundle install
-          cd spec/dummy && bundle install && cd ../..
+          bundle install --no-frozen
+          cd spec/dummy && bundle install --no-frozen && cd ../..
 
       - name: Update CHANGELOG
         run: |
