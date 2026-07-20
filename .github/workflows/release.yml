@@ -31,6 +31,17 @@ jobs:
         run: |
           sed -i 's/VERSION = "[^"]*"/VERSION = "${{ inputs.version }}"/' lib/moj_component/version.rb
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@6e5d382445ae5590b7449d8b3bc8cb1c2c27f617 # v1.317.0
+        with:
+          bundler-cache: true
+          ruby-version: ruby
+
+      - name: Update lockfile
+        run: |
+          bundle install
+          cd spec/dummy && bundle install && cd ../..
+
       - name: Update CHANGELOG
         run: |
           DATE=$(date +%Y-%m-%d)
@@ -41,7 +52,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b release/v${{ inputs.version }}
-          git add lib/moj_component/version.rb CHANGELOG.md
+          git add lib/moj_component/version.rb CHANGELOG.md Gemfile.lock spec/dummy/Gemfile.lock
           git commit -m "Bump version to ${{ inputs.version }}"
           git tag v${{ inputs.version }}
           git push origin release/v${{ inputs.version }}
