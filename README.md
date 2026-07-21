@@ -44,6 +44,8 @@ More [information about each of the components is available here.](https://moj-c
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
+To install this gem onto your local machine, run `bundle exec rake install`. 
+
 ### Ruby versions in this repo
 
 - Local gem development uses the version in .ruby-version (currently 3.3.11).
@@ -53,7 +55,18 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
   - compatibility across supported Ruby versions for the gem
   - production-style runtime smoke checks for the dummy app/Lookbook
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Releasing
+
+Release a new version by running the ["Release gem" workflow](https://github.com/ministryofjustice/moj-components/actions/workflows/release.yml) and entering a version in `X.Y.Z` format (for example, `1.0.0`). The workflow creates a release branch and opens a PR to main for this new version.
+
+The release PR updates:
+
+- lib/moj_component/version.rb
+- CHANGELOG.md
+- Gemfile.lock
+- spec/dummy/Gemfile.lock
+
+After the PR is merged, publish.yml runs automatically, creates and pushes the version tag, and publishes the gem to RubyGems.
 
 ## Contributing
 
