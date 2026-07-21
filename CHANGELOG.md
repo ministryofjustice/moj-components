@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-21
+
 - Rename gemspec file to match name of gem
 - Drop support for ruby v3.2 as it is EOL
 - Pin github actions to specific versions and add to dependabot
