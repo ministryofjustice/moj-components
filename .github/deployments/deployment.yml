@@ -21,7 +21,7 @@ spec:
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: moj-components-uat-secrets
+                  name: ${APP_SECRET_NAME}
                   key: secretKeyBase
           ports:
             - containerPort: 80
