@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+- Update to separate uat and prod deployments
+- Add explicit resources to deployment
+
 ## [0.2.1] - 2026-07-21
 
 - Update workflow so that release.yml will be triggered
