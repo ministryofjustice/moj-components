@@ -17,11 +17,18 @@ spec:
       containers:
         - name: moj-components-docs
           image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
           env:
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: moj-components-uat-secrets
+                  name: ${APP_SECRET_NAME}
                   key: secretKeyBase
           ports:
             - containerPort: 80
