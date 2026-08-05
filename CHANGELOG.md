@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Add pod security context to deployment
+
 ## [0.2.3] - 2026-08-05
 
 - Fix release pipeline

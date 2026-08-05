@@ -16,6 +16,15 @@ spec:
     spec:
       containers:
         - name: moj-components-docs
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+
           image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
           resources:
             requests:
