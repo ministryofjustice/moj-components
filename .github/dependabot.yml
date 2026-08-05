@@ -7,6 +7,9 @@ updates:
       - /spec/dummy
     schedule:
       interval: weekly
+      day: monday
+      time: "21:00"
+      timezone: Europe/London
     labels:
       - dependencies
     groups:
@@ -25,6 +28,9 @@ updates:
       - /spec/dummy
     schedule:
       interval: weekly
+      day: monday
+      time: "21:00"
+      timezone: Europe/London
     labels:
       - dependencies
     groups:
@@ -41,5 +47,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
+      time: "21:00"
+      timezone: Europe/London
     labels:
       - dependencies
