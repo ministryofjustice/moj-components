@@ -11,4 +11,5 @@ Rails.application.config.assets.paths += [
   Rails.root.join("node_modules", "govuk-frontend", "dist", "govuk", "assets"),
   Rails.root.join("node_modules", "@ministryofjustice", "frontend", "moj"),
   Rails.root.join("node_modules", "@ministryofjustice", "frontend", "moj", "assets"),
+  Rails.root.join("node_modules", "@ministryofjustice", "frontend"),
 ]
