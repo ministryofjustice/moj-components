@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 - Add pod security context to deployment
+- Add simplecov to flag low test coverage
 
 ## [0.2.3] - 2026-08-05
 

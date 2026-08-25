@@ -4,6 +4,9 @@ require "action_view"
 require "action_controller"
 require "rails"
 
+require "simplecov"
+SimpleCov.start
+
 module Dummy
   class Application < Rails::Application
     config.eager_load = false
