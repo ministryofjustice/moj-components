@@ -5,6 +5,8 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in moj_components.gemspec
 gemspec
 
+gem "simplecov", require: false, group: :test
+
 group :development, :test do
   gem "capybara"
   gem "herb", require: false
