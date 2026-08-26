@@ -1,0 +1,15 @@
+<% if menu_items.any? %>
+  <div data-button-text="<%= menu_title %>"
+       class="moj-button-menu"
+       <% if @secondary %>
+         data-button-classes="govuk-button--secondary"
+       <% end %>
+       <% if @alignment == "right" %>
+         data-align-menu="right"
+       <% end %>
+       data-module="moj-button-menu">
+    <% menu_items.each do |item| %>
+      <%= item %>
+    <% end %>
+  </div>
+<% end %>

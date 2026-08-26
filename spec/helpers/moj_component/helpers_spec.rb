@@ -20,6 +20,16 @@ RSpec.describe MojComponent::Helpers, type: :helper do
     it_behaves_like "a rendered component", "div.moj-alert"
   end
 
+  describe "#button_menu" do
+    subject(:rendered_component) do
+      helper.moj_button_menu(menu_title: "Review") do |menu|
+        menu.with_menu_item(text: "Approve", href: "#")
+      end
+    end
+
+    it_behaves_like "a rendered component", "div.moj-button-menu"
+  end
+
   describe "#moj_header" do
     subject(:rendered_component) do
       helper.moj_header(organisation_name: "Organisation Name",
