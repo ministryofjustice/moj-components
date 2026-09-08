@@ -1,0 +1,8 @@
+<div class="moj-button-group moj-button-group--inline">
+  <%= govuk_button_link_to("Accept booking", "#") %>
+  <%= moj_button_menu(menu_title: "Review booking", secondary: true, alignment: "right") do |menu| %>
+    <%= menu.with_menu_item(text: "Cancel", href: "#") %>
+    <%= menu.with_menu_item(text: "Put on hold", href: "#") %>
+    <%= menu.with_menu_item(text: "Request more information", href: "#") %>
+  <% end %>
+</div>

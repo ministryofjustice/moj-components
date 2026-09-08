@@ -6,6 +6,10 @@ module MojComponent
       render(MojComponent::AlertComponent.new(**), &)
     end
 
+    def moj_button_menu(**, &)
+      render(MojComponent::ButtonMenuComponent.new(**), &)
+    end
+
     def moj_header(**, &)
       render(MojComponent::HeaderComponent.new(**), &)
     end
