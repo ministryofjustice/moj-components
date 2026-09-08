@@ -1,0 +1,6 @@
+  <%= form_with url: "#", method: :get, scope: :search, local: true do |f| %>
+    <%= f.moj_search_component :query,
+                               label: "Find a person",
+                               hint: "You can search by name, date of birth or National Insurance number",
+                               button_style: :icon %>
+  <% end %>
