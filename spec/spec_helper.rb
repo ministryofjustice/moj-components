@@ -5,7 +5,9 @@ require "action_controller"
 require "rails"
 
 require "simplecov"
-SimpleCov.start
+SimpleCov.start do
+  track_tests
+end
 
 module Dummy
   class Application < Rails::Application
