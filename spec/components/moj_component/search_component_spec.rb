@@ -20,7 +20,7 @@ RSpec.describe MojComponent::SearchComponent, type: :component do
       described_class.new(
         form:,
         attribute: :query,
-        label: "Find a person",
+        label: { text: "Find a person" },
         **component_options,
       ),
     )
@@ -46,7 +46,7 @@ RSpec.describe MojComponent::SearchComponent, type: :component do
   end
 
   context "when a hint is supplied" do
-    let(:component_options) { { hint: "Search by name" } }
+    let(:component_options) { { hint: { text: "Search by name" } } }
 
     it "associates the hint with the input" do
       expect(content).to have_css(".moj-search__hint", text: "Search by name")

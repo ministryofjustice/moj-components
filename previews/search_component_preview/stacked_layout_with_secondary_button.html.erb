@@ -1,7 +1,7 @@
   <%= form_with url: "#", method: :get, scope: :search, local: true do |f| %>
     <%= f.moj_search_component :query,
-                               label: "Find a person",
-                               hint: "You can search by name, date of birth or National Insurance number",
+                               label: { text: "Find a person" },
+                               hint: { text: "You can search by name, date of birth or National Insurance number" },
                                style: :stacked,
                                button_style: :text,
                                button_secondary: true %>

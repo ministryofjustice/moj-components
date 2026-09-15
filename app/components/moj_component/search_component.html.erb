@@ -2,9 +2,9 @@
 
 <search class="moj-search moj-search <%= dynamic_class %>">
   <div class="govuk-form-group">
-    <%= form.govuk_label attribute, text: label, class: "moj-search__label" %>
-    <% if hint.present? %>
-      <div class="govuk-hint moj-search__hint" id="search-hint"><%= hint %></div>
+    <%= form.govuk_label attribute, class: "moj-search__label", **label, hint: "foo" %>
+    <% if hint[:text].present? %>
+      <div class="govuk-hint moj-search__hint" id="search-hint"><%= hint[:text] %></div>
     <% end %>
 
     <% if inline? %>

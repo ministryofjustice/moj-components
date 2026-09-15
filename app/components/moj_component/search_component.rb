@@ -2,17 +2,19 @@
 
 module MojComponent
   class SearchComponent < ApplicationComponent
-    attr_reader :form, :attribute, :style, :label, :hint, :button_style, :button_text, :button_secondary
+    attr_reader :form, :attribute, :style, :label, :hint, :value, :button_style, :button_text, :button_secondary, :attributes
 
-    def initialize(form:, attribute:, label:, style: :inline, hint: nil, button_style: :text, button_text: "Search", button_secondary: false)
+    def initialize(form:, attribute:, label:, style: :inline, hint: {}, value: nil, button_style: :text, button_text: "Search", button_secondary: false, **attributes)
       @form = form
       @attribute = attribute
       @style = style
       @label = label
       @hint = hint
+      @value = value
       @button_style = button_style
       @button_text = button_text
       @button_secondary = button_secondary
+      @attributes = attributes
       super()
     end
 
@@ -66,10 +68,14 @@ module MojComponent
     end
 
     def render_input
-      form.text_field attribute,
-                      class: "govuk-input moj-search__input",
-                      type: "search",
-                      "aria-describedby": ("search-hint" if hint.present?)
+      form.govuk_text_field attribute,
+                            label: nil,
+                            hint: nil,
+                            class: "govuk-input moj-search__input",
+                            type: "search",
+                            "aria-describedby": ("search-hint" if hint.present?),
+                            value:,
+                            **attributes
     end
   end
 end
