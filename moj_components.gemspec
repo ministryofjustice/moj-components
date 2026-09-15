@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "govuk-components"
+  spec.add_dependency "govuk_design_system_formbuilder"
   spec.add_dependency "view_component", ">= 4.0"
 
   # For more information and examples about making a new gem, check out our

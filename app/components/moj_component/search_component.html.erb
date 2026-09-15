@@ -1,0 +1,22 @@
+<% dynamic_class = "moj-search--stacked" if stacked? %>
+
+<search class="moj-search moj-search <%= dynamic_class %>">
+  <div class="govuk-form-group">
+    <%= form.govuk_label attribute, class: "moj-search__label", **label, hint: "foo" %>
+    <% if hint[:text].present? %>
+      <div class="govuk-hint moj-search__hint" id="search-hint"><%= hint[:text] %></div>
+    <% end %>
+
+    <% if inline? %>
+      <div class="govuk-input__wrapper moj-search__input-wrapper">
+        <%= render_input %>
+
+        <%= render_submit %>
+      </div>
+    <% elsif stacked? %>
+      <%= render_input %>
+    <% end %>
+  </div>
+
+  <%= render_submit if stacked? %>
+</search>

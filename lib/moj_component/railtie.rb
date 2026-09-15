@@ -2,6 +2,8 @@
 
 require "rails/railtie"
 require "pathname"
+require "moj_component/form_builder"
+require "govuk_design_system_formbuilder"
 
 module MojComponent
   class Railtie < ::Rails::Railtie
@@ -35,6 +37,14 @@ module MojComponent
 
       ActiveSupport.on_load(:action_view) do
         include ::MojComponent::Helpers
+      end
+    end
+
+    initializer "moj_component.form_builder" do
+      ActiveSupport.on_load(:action_view) do
+        if defined?(GOVUKDesignSystemFormBuilder::FormBuilder)
+          GOVUKDesignSystemFormBuilder::FormBuilder.include(MojComponent::FormBuilder)
+        end
       end
     end
   end
