@@ -6,12 +6,16 @@ module MojComponent
 
     attr_reader :organisation_name,
                 :url,
+                :service_name,
+                :service_url,
                 :new_tab,
                 :nav_items
 
-    def initialize(organisation_name:, url:, new_tab: false)
+    def initialize(organisation_name:, url:, service_name: nil, service_url: nil, new_tab: false)
       @organisation_name = organisation_name
       @url = url
+      @service_name = service_name
+      @service_url = service_url
       @new_tab = new_tab
       super()
     end

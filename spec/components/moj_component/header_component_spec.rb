@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe MojComponent::HeaderComponent, type: :component do
   let(:content) do
-    render_inline(described_class.new(organisation_name:, url:, new_tab:)) do |header|
+    render_inline(described_class.new(organisation_name:, url:, service_name:, service_url:, new_tab:)) do |header|
       header.with_navigation_item(text: "Nav item 1", href: "nav1-url")
       header.with_navigation_item(text: "Nav item 2", href: "nav2-url")
     end
@@ -10,13 +10,18 @@ RSpec.describe MojComponent::HeaderComponent, type: :component do
 
   let(:organisation_name) { "Organisation name" }
   let(:url) { "heading_url" }
+  let(:service_name) { "Service name" }
+  let(:service_url) { "service_url" }
   let(:new_tab) { false }
 
   context "when header is called with everything" do
     it "renders the organisation link and navigation items" do
       expect(content).to have_link("Organisation name",
                                    href: "heading_url",
-                                   class: "govuk-link moj-header__link moj-header__link--organisation-name")
+                                   class: "moj-header__link moj-header__link--organisation-name")
+      expect(content).to have_link("Service name",
+                                   href: "service_url",
+                                   class: "moj-header__link moj-header__link--service-name")
       expect(content).to have_link("Nav item 1",
                                    href: "nav1-url",
                                    class: "moj-header__navigation-link")
@@ -28,12 +33,23 @@ RSpec.describe MojComponent::HeaderComponent, type: :component do
 
   context "when header is called without nav items" do
     let(:content) do
-      render_inline(described_class.new(organisation_name:, url:, new_tab:))
+      render_inline(described_class.new(organisation_name:, url:, service_name:, service_url:, new_tab:))
     end
 
     it "does not render any nav item markup" do
       expect(content)
         .to have_no_css("nav.moj-header__navigation")
+    end
+  end
+
+  context "when header is called without service name" do
+    let(:content) do
+      render_inline(described_class.new(organisation_name:, url:, new_tab:))
+    end
+
+    it "does not render any service markup" do
+      expect(content)
+        .to have_no_css("a.moj-header__link--service-name")
     end
   end
 
