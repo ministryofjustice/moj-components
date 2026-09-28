@@ -12,5 +12,9 @@ class HeaderComponentPreview < ViewComponent::Preview
     render_with_template
   end
 
+  def with_service_name
+    render_with_template
+  end
+
   # @!endgroup
 end
