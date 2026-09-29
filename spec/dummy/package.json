@@ -4,6 +4,6 @@
   "dependencies": {
     "@ministryofjustice/frontend": "^10.0.1",
     "govuk-frontend": "^6.4.0",
-    "moment": "^2.30.1"
+    "moment": "^2.31.0"
   }
 }
