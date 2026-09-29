@@ -7,8 +7,8 @@ RSpec.describe MojComponent::InterruptionCardComponent, type: :component do
 
   context "when interruption_card is called with a heading only" do
     it "renders the interruption card template with the heading only" do
-      expect(rendered_content).to have_css("h1.govuk-heading-l.moj-interruption-card__heading", text: "Heading")
-      expect(rendered_content).to have_no_css("div.govuk-body.moj-interruption-card__body")
+      expect(rendered_content).to have_css("h1.moj-interruption-card__heading", text: "Heading")
+      expect(rendered_content).to have_no_css("div.moj-interruption-card__body")
     end
   end
 
@@ -20,8 +20,8 @@ RSpec.describe MojComponent::InterruptionCardComponent, type: :component do
     end
 
     it "renders the interruption card template with the heading and body" do
-      expect(rendered_content).to have_css("h1.govuk-heading-l.moj-interruption-card__heading", text: "Heading")
-      expect(rendered_content).to have_css("div.govuk-body.moj-interruption-card__body", text: "Body")
+      expect(rendered_content).to have_css("h1.moj-interruption-card__heading", text: "Heading")
+      expect(rendered_content).to have_css("div.moj-interruption-card__body", text: "Body")
     end
   end
 
@@ -34,8 +34,8 @@ RSpec.describe MojComponent::InterruptionCardComponent, type: :component do
     end
 
     it "renders the interruption card template with the heading and body" do
-      expect(rendered_content).to have_css("h1.govuk-heading-l.moj-interruption-card__heading", text: "Heading")
-      expect(rendered_content).to have_css("div.govuk-body.moj-interruption-card__body", text: "Body")
+      expect(rendered_content).to have_css("h1.moj-interruption-card__heading", text: "Heading")
+      expect(rendered_content).to have_css("div.moj-interruption-card__body", text: "Body")
       expect(rendered_content).to have_css("div.govuk-button-group.moj-interruption-card__actions", text: "My actions")
     end
   end

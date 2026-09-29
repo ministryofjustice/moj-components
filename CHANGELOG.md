@@ -3,6 +3,7 @@
 - Add pod security context to deployment
 - Add simplecov to flag low test coverage
 - Update header to accept `service_name` and `service_url` to display the service name
+- Update interruption card html to match moj-frontend documentation
 
 ## [0.2.3] - 2026-08-05
 
