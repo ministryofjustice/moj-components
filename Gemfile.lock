@@ -3,6 +3,7 @@ PATH
   specs:
     moj_components (0.2.3)
       govuk-components
+      govuk_design_system_formbuilder
       view_component (>= 4.0)
 
 GEM
@@ -111,6 +112,11 @@ GEM
       html-attributes-utils (~> 1.0.0, >= 1.0.0)
       pagy (>= 6, < 10)
       view_component (>= 4.9, < 4.13)
+    govuk_design_system_formbuilder (6.5.0)
+      actionview (>= 7.2)
+      activemodel (>= 7.2)
+      activesupport (>= 7.2)
+      html-attributes-utils (~> 1)
     herb (0.10.4-arm64-darwin)
     herb (0.10.4-x86_64-linux-gnu)
     html-attributes-utils (1.0.2)
