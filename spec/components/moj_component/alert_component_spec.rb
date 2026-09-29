@@ -31,6 +31,14 @@ RSpec.describe MojComponent::AlertComponent, type: :component do
     end
   end
 
+  context "when alert is called without dismiss text" do
+    let(:dismiss_text) { nil }
+
+    it "does not render the dismiss link" do
+      expect(content).to have_no_css(".moj-alert__action .moj-alert__dismiss")
+    end
+  end
+
   context "when alert is called without a type" do
     let(:type) { nil }
 
