@@ -9,7 +9,7 @@ module MojComponent
                 :dismiss_text,
                 :dismiss_method
 
-    def initialize(type:, heading:, body:, dismiss_href:, dismiss_text: "Dismiss", dismiss_method: :post)
+    def initialize(type:, heading:, body:, dismiss_href: nil, dismiss_text: "Dismiss", dismiss_method: :post)
       @type = check_type(type)
       @heading = heading
       @body = body

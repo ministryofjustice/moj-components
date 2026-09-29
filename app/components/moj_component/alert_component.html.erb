@@ -12,12 +12,14 @@
     <% end %>
     <%= body %>
   </div>
-  <div class="moj-alert__action">
-    <%= govuk_link_to(
-          dismiss_text,
-          dismiss_href,
-          method: dismiss_method,
-          class: "moj-alert__dismiss",
-        ) %>
-  </div>
+  <% if dismiss_text.present? %>
+    <div class="moj-alert__action">
+      <%= govuk_link_to(
+            dismiss_text,
+            dismiss_href,
+            method: dismiss_method,
+            class: "moj-alert__dismiss",
+          ) %>
+    </div>
+  <% end %>
 </div>
