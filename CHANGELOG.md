@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.3.0] - 2026-09-30
+
 - Add pod security context to deployment
 - Add simplecov to flag low test coverage
 - Update header to accept `service_name` and `service_url` to display the service name
