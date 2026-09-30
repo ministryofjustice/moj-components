@@ -8,8 +8,7 @@ module MojComponent
                 :url,
                 :service_name,
                 :service_url,
-                :new_tab,
-                :nav_items
+                :new_tab
 
     def initialize(organisation_name:, url:, service_name: nil, service_url: nil, new_tab: false)
       @organisation_name = organisation_name
