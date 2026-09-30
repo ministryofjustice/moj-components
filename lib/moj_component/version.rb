@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module MojComponent
-  VERSION = "0.2.3"
+  VERSION = "0.3.0"
   Version = VERSION
 end
