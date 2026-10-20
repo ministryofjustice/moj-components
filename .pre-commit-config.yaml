@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/ministryofjustice/devsecops-hooks
+    rev: 53d252e406bae2bbbd0c0f3205b72870a02c9b3f # v2.0.2 re-run prek install after changing this
+    hooks:
+      - id: baseline
+  - repo: local
+    hooks:
+      - id: rubocop
+        name: Rubocop
+        language: system
+        entry: bundle exec rubocop --force-exclusion
+      - id: herb
+        name: Herb
+        language: system
+        entry: herb lint
