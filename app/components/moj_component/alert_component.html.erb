@@ -1,6 +1,6 @@
 <% dynamic_class = "moj-alert--#{type}" %>
 
-<div role="region" class="moj-alert <%= dynamic_class %> moj-alert--with-heading" aria-label="<%= type %>: <%= heading %>" data-module="moj-alert">
+<div role="region" class="moj-alert <%= dynamic_class %> moj-alert--with-heading" aria-label="<%= type %>: <%= heading %>" data-module="moj-alert" <%= 'data-dismissible="true"' if dismiss_href.present? %>>
   <div>
     <svg class="moj-alert__icon" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" height="30" width="30">
       <%= icon %>
@@ -12,7 +12,7 @@
     <% end %>
     <%= body %>
   </div>
-  <% if dismiss_text.present? %>
+  <% if dismiss_href.present? %>
     <div class="moj-alert__action">
       <%= govuk_link_to(
             dismiss_text,

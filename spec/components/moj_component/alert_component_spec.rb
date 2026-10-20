@@ -22,6 +22,20 @@ RSpec.describe MojComponent::AlertComponent, type: :component do
     end
   end
 
+  context "when only required arguments are provided" do
+    let(:content) do
+      render_inline(
+        described_class.new(type:, body:),
+      )
+    end
+
+    it "renders the alert with only body and type" do
+      expect(content).to have_css(".moj-alert .moj-alert__content", text: "Body text")
+      expect(content).to have_no_css(".moj-alert h2.moj-alert__heading")
+      expect(content).to have_no_css(".moj-alert__action .moj-alert__dismiss")
+    end
+  end
+
   context "when alert is called without a heading" do
     let(:heading) { nil }
 
@@ -31,8 +45,8 @@ RSpec.describe MojComponent::AlertComponent, type: :component do
     end
   end
 
-  context "when alert is called without dismiss text" do
-    let(:dismiss_text) { nil }
+  context "when alert is called without dismiss href" do
+    let(:dismiss_href) { nil }
 
     it "does not render the dismiss link" do
       expect(content).to have_no_css(".moj-alert__action .moj-alert__dismiss")
