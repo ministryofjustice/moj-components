@@ -5,7 +5,7 @@ CI.run do
 
   step "Style: Ruby", "bin/rubocop"
 
-  step "Security: Gem audit", "bin/bundler-audit"
+  step "Security: Gem audit", "bin/bundler-audit check --update"
   step "Security: Brakeman code analysis", "bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error"
 
   # Optional: set a green GitHub commit status to unblock PR merge.
