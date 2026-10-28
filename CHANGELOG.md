@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Add devsecops pre commit hooks
+
 ## [0.3.0] - 2026-09-30
 
 - Add pod security context to deployment
