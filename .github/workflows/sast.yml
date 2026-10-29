@@ -1,5 +1,8 @@
 name: Static Application Security Testing
 on:
+  push: # temp - delete me!
+    branches:
+      - add-snyk-dependency-scanning # temp - delete me!
   schedule:
     - cron: "15 6 * * *"
   workflow_dispatch:
@@ -14,6 +17,9 @@ jobs:
       id-token: write
       contents: read
       security-events: write
+    with:
+      image_uri: ${{ secrets.ECR_REGISTRY_URL }}/${{ vars.ECR_REPOSITORY }}:latest
+      dockerfile_path: "spec/dummy/Dockerfile"
     secrets:
       SNYK_CLIENT_ID: ${{ secrets.SNYK_CLIENT_ID }}
       SNYK_CLIENT_SECRET: ${{ secrets.SNYK_CLIENT_SECRET }}
