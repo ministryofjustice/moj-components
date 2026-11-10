@@ -1,5 +1,9 @@
 name: Static Application Security Testing
 on:
+  push:
+    branches:
+      - main
+  pull_request:
   schedule:
     - cron: "15 6 * * *"
   workflow_dispatch:
@@ -14,6 +18,8 @@ jobs:
       id-token: write
       contents: read
       security-events: write
+    with:
+      iac_path: ".github/deployments"
     secrets:
       SNYK_CLIENT_ID: ${{ secrets.SNYK_CLIENT_ID }}
       SNYK_CLIENT_SECRET: ${{ secrets.SNYK_CLIENT_SECRET }}
