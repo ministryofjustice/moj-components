@@ -1,0 +1,26 @@
+<div class="moj-datepicker"
+     data-module="moj-date-picker"
+     data-min-date="<%= min_date %>"
+     data-max-date="<%= max_date %>"
+     data-excluded-dates="<%= excluded_dates.join(' ') %>"
+     data-excluded-days="<%= excluded_days.join(' ') %>">
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="<%= id %>">
+      <%= heading %>
+    </label>
+    <% if hint.present? %>
+      <div id="<%= hint_id %>" class="govuk-hint">
+        <%= hint %>
+      </div>
+    <% end %>
+    <input
+      class="govuk-input moj-js-datepicker-input"
+      id="<%= id %>"
+      name="<%= name %>"
+      type="text"
+      <% if described_by %>
+        aria-describedby="<%= described_by %>"
+      <% end %>
+      autocomplete="off">
+  </div>
+</div>
