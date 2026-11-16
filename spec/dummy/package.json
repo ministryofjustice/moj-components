@@ -2,8 +2,8 @@
   "name": "moj-components-dummy",
   "version": "1.0.0",
   "dependencies": {
-    "@ministryofjustice/frontend": "^11.1.0",
-    "govuk-frontend": "^6.4.0",
+    "@ministryofjustice/frontend": "^12.0.0",
+    "govuk-frontend": "^6.6.0",
     "moment": "^2.31.0"
   }
 }
