@@ -11,7 +11,7 @@ on:
 
 jobs:
   rubocop:
-    uses: ministryofjustice/laa-reusable-github-actions/.github/workflows/rubocop.yml@0f3c0ae38a2ba9e6bdc35392b5c719ce89221401
+    uses: ministryofjustice/laa-reusable-github-actions/.github/workflows/rubocop.yml@7152e5b52e016ee20bca10b13d716c4f087599b4
 
   rspec:
     strategy:
