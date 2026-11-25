@@ -1,0 +1,71 @@
+name: Snyk Dependency Scanning
+
+on:
+  push:
+    branches:
+      - main
+      - add-snyk-dependency-scanning # temp - delete me!
+    paths:
+      - Gemfile
+      - Gemfile.lock
+      - "*.gemspec"
+      - .github/workflows/snyk-dependency-scanning.yml
+  schedule:
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snyk-dependencies:
+    name: Scan Ruby dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@e81a8fa391b11a595c1b7ed84177cc0fe02faf83 # v1.328.0
+        with:
+          bundler-cache: true
+
+      - name: Authenticate with Snyk
+        id: auth
+        uses: ministryofjustice/laa-reusable-github-actions/.github/actions/snyk-auth@6db001458db30ae747d9eb8eb25707ce52b359bc
+        with:
+          client_id: ${{ secrets.SNYK_CLIENT_ID }}
+          client_secret: ${{ secrets.SNYK_CLIENT_SECRET }}
+
+      - name: Install Snyk CLI
+        uses: snyk/actions/setup@9adf32b1121593767fc3c057af55b55db032dc04
+
+      - name: Scan dependencies
+        id: scan
+        continue-on-error: true
+        env:
+          SNYK_OAUTH_TOKEN: ${{ steps.auth.outputs.token }}
+          SNYK_ORG_ID: ${{ secrets.SNYK_ORG_ID }}
+        run: |
+          snyk test \
+            --file=Gemfile.lock \
+            --org="$SNYK_ORG_ID" \
+            --severity-threshold=high
+
+      - name: Monitor dependencies
+        env:
+          SNYK_OAUTH_TOKEN: ${{ steps.auth.outputs.token }}
+          SNYK_ORG_ID: ${{ secrets.SNYK_ORG_ID }}
+        run: |
+          snyk monitor \
+            --file=Gemfile.lock \
+            --org="$SNYK_ORG_ID" \
+            --project-name=moj-components \
+            --remote-repo-url="https://github.com/ministryofjustice/moj-components"
+
+      - name: Fail if scan identified issues
+        if: steps.scan.outcome == 'failure'
+        run: exit 1
