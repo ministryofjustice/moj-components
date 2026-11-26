@@ -12,8 +12,52 @@ on:
       - main
 
 jobs:
-  deploy-uat:
+  build:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.ECR_REGION }}
+      - uses: aws-actions/amazon-ecr-login@03f1aad4c6c7ffd436567f42f9384779290529bd # v2.1.7
+        id: login-ecr
+      - id: build
+        run: |
+          docker build -f spec/dummy/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          echo "image_uri=$REGISTRY/$REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+          IMAGE_TAG: ${{ github.event.workflow_run.head_sha }}
+    outputs:
+      image_uri: ${{ steps.build.outputs.image_uri }}
+  scan:
+    needs: build
+    uses: ministryofjustice/laa-reusable-github-actions/.github/workflows/sast.yml@29411bff7835740bdb7005f64b73f05f8a2ffd10 # main as of 28/10/2026
+    with:
+      image_uri: ${{ needs.build.outputs.image_uri }}
+      dockerfile_path: "spec/dummy/Dockerfile"
+      iac_path: ".github/deployments"
+    permissions:
+      actions: read
+      id-token: write
+      contents: read
+      security-events: write
+    secrets:
+      SNYK_CLIENT_ID: ${{ secrets.SNYK_CLIENT_ID }}
+      SNYK_CLIENT_SECRET: ${{ secrets.SNYK_CLIENT_SECRET }}
+      ECR_ROLE_TO_ASSUME: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+
+  deploy-uat:
+    needs: [build, scan]
     runs-on: ubuntu-latest
     permissions:
       id-token: write # This is required for requesting the JWT
@@ -22,7 +66,6 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
-
 
       # Assume role in Cloud Platform
       - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
@@ -35,13 +78,7 @@ jobs:
         id: login-ecr
 
       # Build and push a Docker image to the container repository
-      - run: |
-          docker build -f spec/dummy/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ github.event.workflow_run.head_sha }}
+
       - run: |
           mkdir -p deployments
           cat .github/deployments/deployment.yml | envsubst > deployments/deployment.yml
